@@ -1,0 +1,13 @@
+<table>
+	<tr><td><%= link_to 'Refresh feed entries', :controller=>"entries",:action=>"show_new_entry" %></td>
+		<td><%= link_to 'Back to feed',feeds_path %>
+	</tr>
+	</table>
+
+<table border='1px'>
+	<tr><th>Source<th>News Title</th><th>Published Date</th></tr>
+	<%for entry in @entries%>
+	<tr><td><%=entry.feed.title%></td><td><%=link_to(entry.title,{},{:href=>entry.url,:target=>"_blank"},{})%></td><td><%=entry.published_date%></td></tr>
+	<%end%>
+	<tr><td colspan="2"><%=will_paginate @entries%></td></tr>
+	</table>
